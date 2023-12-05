@@ -20,6 +20,7 @@ uint64_t map_function(const auto &m, uint64_t v) {
 }
 
 int main() {
+  // file parsing by chatgpt
   std::ifstream file("input");
   std::string line;
   std::vector<uint64_t> seeds;
@@ -57,13 +58,11 @@ int main() {
     auto a = seeds[i];
     auto b = seeds[i] + seeds[i+1];
     #pragma omp critical
-    std::cout << "Range: [" << a << ", " << b << ")\n";
+    std::cout << "Range " << i/2 << ": [" << a << ", " << b << ")\n";
     uint64_t range_min_value = UINT64_MAX;
     for (auto v_start = a; v_start < b; v_start++) {
       auto v = v_start;
-      for (auto& m : maps) {
-        v = map_function(m, v);
-      }
+      for (auto& m : maps) v = map_function(m, v);
       if (v < range_min_value) range_min_value = v;
     }
     #pragma omp critical
