@@ -8,12 +8,13 @@ import numpy as np
 import sympy
 import math
 import re
+import os
 
 def p(v, desc=None):
     print(f"{desc}: {v}" if desc else v)
     return v
 
-with open("input") as f:
+with open(os.path.dirname(__file__) + "/input") as f:
     data = f.read().splitlines()
 
 for line in data:
